@@ -1,0 +1,2 @@
+def first:
+    print primo
