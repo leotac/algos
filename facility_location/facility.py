@@ -22,7 +22,7 @@ def exact(F, C, f, c):
             m.addConstr(y[i] - x[i,j] >= 0, 'open_%s%s' % (i,j))
      
     m.optimize()
-    assign, I = {},{}
+    assign, I = {},[]
     for i in F:
         if y[i].x == 1:
             I.append(i)
@@ -208,3 +208,5 @@ def main():
     primaldual(facilities, cities, fixedcost, cost)
     exact(facilities, cities, fixedcost, cost)
 
+if __name__ == "__main__":
+    main()
