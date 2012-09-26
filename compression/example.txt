@@ -1,0 +1,125 @@
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut urna lacus, posuere et consectetur sit amet, pellentesque ut ante. Donec ultricies cursus tempus. Mauris lacus velit, auctor vel rhoncus non, adipiscing vestibulum libero. In nisl magna, consequat quis laoreet et, accumsan sed lorem. Donec consequat porttitor vulputate. Curabitur pulvinar orci eu lacus ultricies eget scelerisque enim tempor. Vivamus blandit bibendum nisi. Nunc cursus porttitor pulvinar. In venenatis gravida pharetra. Duis commodo scelerisque nunc ut malesuada. Quisque in tortor arcu. Nam vitae est non nisl convallis lobortis.
+
+Nam ante felis, dignissim ut auctor sit amet, tempus ac nisi. Mauris et eros et neque dignissim dapibus sed sed leo. Ut congue, justo a mattis vehicula, odio eros molestie augue, ac sodales ante augue a libero. In hac habitasse platea dictumst. Nulla dignissim ullamcorper fringilla. Etiam vitae arcu elit. Mauris bibendum tellus non nibh facilisis in tempus tortor imperdiet. Integer porta massa sed libero malesuada malesuada. Nam in sapien ligula. Fusce quis nisl leo. Fusce scelerisque dictum convallis. Maecenas id ante dui, sed dapibus elit.
+
+Donec blandit suscipit lacus, at varius magna fermentum id. In hendrerit felis eget lectus consequat in tincidunt ligula auctor. Aenean magna ante, convallis lacinia ultrices vel, luctus id lectus. Mauris dapibus egestas posuere. Aliquam erat volutpat. Duis tristique lacus a libero rutrum sodales. Vivamus sit amet nulla neque. Sed mauris odio, consectetur at suscipit vitae, vulputate eu erat. Donec egestas elementum felis a luctus. Morbi vitae magna ac eros feugiat fermentum.
+
+Donec pretium vestibulum nisl, id molestie neque faucibus id. Maecenas tristique dolor a ligula pharetra convallis. Suspendisse ipsum risus, vulputate nec rutrum a, dictum id mauris. Proin lobortis arcu tempor nibh interdum in mollis diam sagittis. Aliquam at nisl a magna pharetra tincidunt. Mauris ornare velit in urna hendrerit malesuada. Ut augue massa, semper sit amet consectetur vitae, ullamcorper quis eros. Donec accumsan volutpat lorem, eu porttitor velit egestas vitae. Curabitur in eros sit amet magna aliquam egestas in sed risus. Nulla quis elementum elit. Aenean dolor diam, varius nec laoreet sed, vulputate in lacus. Sed ut sodales ipsum. Aenean vestibulum cursus tortor, et volutpat nunc convallis ultrices. Quisque sit amet urna vitae ipsum consequat accumsan at et lorem. Praesent ut elit sed massa interdum hendrerit.
+
+Praesent libero nisi, posuere nec lobortis at, accumsan et leo. Donec fermentum blandit dolor, a posuere metus interdum eget. Aliquam at nisi nulla. In eros augue, dignissim id sagittis et, ultrices nec arcu. Donec nec ligula diam. Mauris dignissim arcu vel neque blandit ut iaculis sem tincidunt. Fusce consectetur, nulla sit amet convallis rhoncus, erat sapien imperdiet neque, et lobortis ipsum sem ut mauris.
+
+Vivamus placerat, lectus in aliquam aliquet, eros turpis luctus dui, eu sagittis erat neque eget elit. Nam sodales auctor felis. In hac habitasse platea dictumst. Curabitur condimentum accumsan nisi non fermentum. Curabitur pretium scelerisque nunc, vel mollis tortor vulputate porttitor. Sed non turpis ut ligula sodales rhoncus vitae at dui. In consequat, nulla nec iaculis sagittis, augue urna interdum mauris, at luctus ligula est id velit. Suspendisse vel mi quis felis venenatis consequat. Curabitur ac sapien ipsum, id ultrices ipsum. Nullam et pharetra augue. Curabitur et sapien blandit mauris pellentesque ullamcorper ut ac tellus. Maecenas suscipit nisi vitae ligula malesuada aliquet. Praesent sagittis pellentesque neque, non consectetur ante aliquam in.
+
+Morbi ultricies mi id neque ullamcorper ut facilisis arcu porta. Mauris feugiat, dolor et sagittis placerat, felis nunc lacinia arcu, adipiscing rhoncus diam eros in ipsum. Integer in felis sit amet odio pulvinar tincidunt quis vitae elit. In dignissim vestibulum neque, vel fringilla sapien tincidunt vel. Ut facilisis cursus scelerisque. Sed ac adipiscing nisl. Curabitur nulla metus, viverra at gravida rutrum, suscipit quis ligula. Suspendisse nunc massa, mattis commodo pellentesque at, eleifend nec tortor. Nulla a scelerisque tortor. Duis vestibulum ipsum eget odio faucibus venenatis. Fusce cursus suscipit interdum.
+
+Maecenas egestas sollicitudin sapien, id commodo libero ornare id. In id lectus augue. In hendrerit ligula sed mi tincidunt aliquet. Fusce in sem eget nulla venenatis aliquet. Praesent lacus libero, eleifend non pellentesque volutpat, commodo id risus. Phasellus ultricies nisi luctus mi fringilla luctus. Sed viverra ante in massa consequat laoreet. Aenean a dolor ut felis auctor blandit vitae eget ligula. Nulla scelerisque luctus mi, ut vehicula dui tempus vitae. Curabitur dignissim volutpat molestie.
+// Used to sort by most frequent 
+bool cmp(const int a, const int b) {
+    return char_count[a] > char_count[b];
+}
+
+// Translate a character to a vector of bool (bitset)
+void translateCharToBits(char cur_char, vector<bool> &v){
+    v.clear();
+    cout << "Translate "<< cur_char << " to " << encoding[(int)cur_char]<<endl;
+    const char* compressed_encoding = encoding[(int)cur_char].c_str();
+    int i = 0;
+    while(compressed_encoding[i] != '\0'){
+        if(compressed_encoding[i] == '0') {
+            cout << "Found 0-";
+            v.push_back(0);
+        }
+        if(compressed_encoding[i] == '1') {
+            cout << "Found 1-";
+            v.push_back(1);
+        }
+        i++;   
+    }
+}
+
+// Translate a vector of bool (bitset) to a character, given a vector containing
+// the characters sorted by frequency (from most to least frequent)
+char translateBitsToChar(vector<bool> &v, vector<char>& chars) {
+    int ones = 0;
+    for(bool val : v)
+        if(val)
+            ones++;
+    int l = (int) v.size();
+        
+    // Compact, but slower than pre-computing the indices in a table
+    int encoding_index = ((l-2)+1)*(l-2)/2 + ones;
+    cout << "Is: " <<chars[encoding_index-1] << endl;
+    
+    return chars[encoding_index-1];
+    }
+
+int main (int argc, char **argv) {
+    
+    string file_name = "";
+    string output_name = "";
+    bool extract = false;
+    int c;
+    while ((c = getopt (argc, argv, "f:o:xh")) != -1)
+        switch (c)
+            {
+            case 'x':
+                extract = true;
+                break;            
+            case 'f':
+                file_name = string(optarg);
+                break;
+            case 'o':
+                output_name = string(optarg);
+                break;
+            case 'h':
+                cout << argv[0] << "\nCompress an ASCII text file creating a file with .zap extension.\nArguments:\n-f\t(required) input file\n-o\toutput file\n-x\tuncompress file\n";
+                return 0;
+            case '?':
+                if (optopt == 'f' || optopt == 'o')
+                    fprintf (stderr, "Option -%c requires an argument.\n", optopt);
+                else if (isprint (optopt))
+                    fprintf (stderr, "Unknown option `-%c'.\n-h for a list of options\n", optopt);
+                else
+                    fprintf (stderr,
+                        "Unknown option character `\\x%x'.\n-h for a list of options\n",
+                        optopt);
+                return 1;
+            default:
+                return 1;
+           }
+    
+    if (file_name == "") {
+        cout << "-f required\n-h for a list of options\n";
+        return 1;
+    }
+
+    ifstream ifile(file_name.c_str());
+    if(!ifile) {
+        cout << argv[0] << ": " << file_name << ": the file does not exist\n";
+        return 1;
+    }
+    ifile.close();
+ 
+    
+    if (extract) {
+        int lastindex = file_name.find_last_of("."); 
+        if (lastindex == string::npos || file_name.substr(lastindex+1) != "zap") {
+            cout << argv[0] << ": " << file_name << ": unknown suffix (expected .zap)\n";
+            return 1;
+        }
+    }
+    
+    if (output_name == "") {
+        if(!extract)
+            output_name = file_name + ".zap";
+        else {
+            int lastindex = file_name.find_last_of("."); 
+            output_name = file_name.substr(0, lastindex);
+        }
+    }
+    
+Nulla et est tortor. Curabitur at purus purus, ac varius orci. Ut vehicula, justo sed pretium bibendum, turpis nisi bibendum tortor, ac fringilla ante purus eget nibh. Quisque sollicitudin velit vulputate lectus hendrerit mollis quis sit amet lectus. Mauris in erat turpis. Nulla eu ipsum id nibh suscipit tempus. Vivamus semper sodales elit, vel ultricies tortor mollis vel. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla aliquam, lorem non sodales pretium, tortor velit aliquam urna, sit amet fringilla eros arcu a diam. Nam volutpat viverra molestie. Suspendisse ut dui velit, condimentum malesuada dolor. Donec elit arcu, elementum vitae eleifend eu, eleifend sed lectus. Aenean id eleifend nunc. Suspendisse accumsan sem tempor libero sagittis eu rutrum velit feugiat.
+
+Praesent gravida convallis orci, imperdiet cursus sapien aliquet in. Etiam diam libero, rutrum a placerat quis, cursus non turpis. Donec fermentum facilisis lectus, et scelerisque erat varius sit amet. Curabitur euismod, dui ac volutpat faucibus, augue diam varius lectus, sit amet lobortis purus lorem at augue. Donec ultricies lobortis varius. Mauris ut massa libero. Fusce at gravida mi. Sed posuere adipiscing sem, sit amet auctor tellus luctus semper. Nam posuere metus a massa euismod et aliquam lectus interdum. Aliquam erat volutpat. Phasellus sit amet ultricies mauris. 
+
+
