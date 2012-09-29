@@ -11,17 +11,17 @@ divided into 64 cells. Somewhere in this grid, a ship
 has been lost. Each cell has a number that represents the probability of finding the lost ship when
 that cell is searched (based on last known position,
 ocean currents and debris sightings). For example,
-if you searched cell A1, you would have a 2 percent
+if you searched cell (0,0), you would have a 3 percent
 chance of finding the lost ship there.
 
-1 3 0 0 3 2 4 2 3  
-2 3 3 3 1 2 4 1 4  
-3 0 4 0 1 2 3 4 0  
-4 1 1 0 3 4 1 1 0  
-5 1 1 3 3 1 2 2 4  
-6 0 2 3 3 3 0 2 4  
-7 2 3 2 4 2 4 1 1  
-8 2 1 2 2 2 4 1 3  
+3 0 0 3 2 4 2 3  
+3 3 3 1 2 4 1 4  
+0 4 0 1 2 3 4 0  
+1 1 0 3 4 1 1 0  
+1 1 3 3 1 2 2 4  
+0 2 3 3 3 0 2 4  
+2 3 2 4 2 4 1 1  
+2 1 2 2 2 4 1 3  
 
 
 As the leader of the search and rescue team,
@@ -34,13 +34,13 @@ to revisit any cells. Add up the percentages in the
 10 cells you have searched to get the probability of
 finding the lost ship.
 
-QUESTION:
+**QUESTION:**
 What is the greatest probability of finding the lost ship?
 
 First idea: Dynamic Programming
 ----
 
-Bellman's equations:
+Bellman equation:
 
 OPT(i,l) = P(i) + max{j in adj(i)}OPT(j,l-1)  
 OPT(i,1) = P(i) or, equivalently, OPT(i,0) = 0
