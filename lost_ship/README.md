@@ -37,8 +37,8 @@ finding the lost ship.
 **QUESTION:**
 What is the greatest probability of finding the lost ship?
 
-First idea: Dynamic Programming
-----
+###First idea: Dynamic Programming
+
 
 Bellman equation:
 
@@ -54,12 +54,12 @@ Nope, scratch this. We can't use twice the same cell,
 and there is no direction we have to follow, so DP is not as
 straightforward as it seemed.
 
-Second idea:
-----
+###Second idea:
+
 Simply with a recursive algorithm it's easy to find a solution.
 Not as nice/efficient, but it's ok on this small puzzle.
 
-Third idea:
------
+###Third idea:
+
 
 Integer programming model / graph flow algo.
