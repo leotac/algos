@@ -37,7 +37,7 @@ finding the lost ship.
 **QUESTION:**
 What is the greatest probability of finding the lost ship?
 
-###First idea: Dynamic Programming
+###~~First idea: Dynamic Programming~~
 
 
 Bellman equation:
@@ -62,4 +62,7 @@ Not as nice/efficient, but it's ok on this small puzzle.
 ###Third idea:
 
 
-Integer programming model / graph flow algo.
+Integer programming model. Each cell is a node in a graph. Each node in the
+solution must have one incoming and one outgoing arc (except for the starting
+and ending cell). Each node in the path is labeled from 1 to 10, so to avoid
+cycles. Cells not in the solution are labeled 0.
