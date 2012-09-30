@@ -66,3 +66,15 @@ Integer programming model. Each cell is a node in a graph. Each node in the
 solution must have one incoming and one outgoing arc (except for the starting
 and ending cell). Each node in the path is labeled from 1 to 10, so to avoid
 cycles. Cells not in the solution are labeled 0.
+
+
+Solution obtained by the algorithms (value 33):
+
+0 0 0 0 0 0 0 0  
+0 0 0 0 0 0 0 0  
+0 0 0 0 0 0 0 0  
+0 0 0 1 1 0 0 0  
+0 0 1 1 0 0 0 0  
+0 0 1 1 0 0 0 0  
+0 0 0 1 1 1 0 0  
+0 0 0 0 0 1 0 0  
