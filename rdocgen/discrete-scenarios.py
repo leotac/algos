@@ -18,7 +18,7 @@ I, c_OM, c_delta, c_f, b, q_u, q_l, e_u, e_l, K_1, K_2, K_3, max_starts = multid
    [0.4,      50,0.06,   8,3100,1300,4500,2200,0.16,   0,0.21,  3]
    })
 
-#break symmetry?
+# Break symmetry between turbines?
 #print I,S,T
 c_p = 0.09
 nu = 4
