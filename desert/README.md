@@ -35,23 +35,23 @@ Dynamic programming
 
 Though it's not really necessary, it seemed the puzzle could be a good fit for either a search algorithm and a dynamic programming approach.
 
-With DP, build a table L where L[K,F] is the max length that can be reached with K cars and F total excess fuel. 
+With DP, build a table L where `L[K,F]` is the max length that can be reached with K cars and F total excess fuel. 
 The excess fuel, as mentioned above, is defined as the available fuel in the gas tanks or fuel cans reduced by the amount of fuel needed to get back to the base camp. In other words, the remaining fuel after all cars are back.
 
-Since we are not interested in saving fuel, referring to the original problem, L[1,0] is going to be the solution we want. 
-Of course, we also get _for free_ the optimal distances reached with at least K=1..9 cars.
+Since we are not interested in saving fuel, referring to the original problem, `L[1,0]` is going to be the solution we want. 
+Of course, we also get _for free_ the optimal distances reached with at least `K=1..9 cars`.
 
 The update is computed according to the equation:
 
     L[K,F] = max {0, L[K+1,F], 1 + L[K,F+2K]}
 
-where the last option is possible only under the constraint that `F+2K+K\*L[K,F+2K]` is smaller or equal than the total capacity of `K` cars.
+where the last option is possible only under the constraint that `F+2K+K\L[K,F+2K]` is smaller or equal than the total capacity of `K` cars.
 
 This means that the distance reachable with `K` cars, and leaving excess fuel `F`, is either: 
 
 1. the same reached by `K+1` cars with the same excess `F`, if that excess is not enough to guarantee a step forward
 2. 1 step further than the distance reached by the same number of cars at the previous stop, if `K` cars can store enough fuel (excess+fuel needed to come back) to take a step forward and reach the current state
 
-The table is computed starting from the bottom row, with all `K\_max` cars and all fuel `F\_total` in excess, and then reducing `F`. 
+The table is computed starting from the bottom row, with all `K_max` cars and all fuel `F_total` in excess, and then reducing `F`. 
 
-It would also be possible to see the problem from the opposite point of view, i.e., considering needed fuel (used or to-be-used) instead of the excess fuel. It makes no difference.
+It would also be possible to see the problem from the opposite point of view, i.e., considering needed fuel (used or to-be-used) instead of the excess fuel. It makes no difference (possibly the equation would be simpler to understand?).
