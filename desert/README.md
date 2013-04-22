@@ -26,6 +26,7 @@ Consider the fuel in excess for each jeep (current fuel - fuel they need to come
 Then, send back as many jeeps as possible such that, for each of them, either:
 - all its excess fuel can be stored by the other jeeps in the group 
 - the (partial) excess fuel that can't be stored is greater than 2.
+
 This is optimal because:
 1. Sending back fewer jeeps than advised implies wasting fuel that could be saved. 
 2. Sending back more cars than needed does not improve the solution.
