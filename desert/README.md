@@ -45,13 +45,13 @@ The update is computed according to the equation:
 
     L[K,F] = max {0, L[K+1,F], 1 + L[K,F+2K]}
 
-where the last option is possible only under the constraint that F+2K+K\*L[K,F+2K] is smaller or equal than the total capacity of K cars.
+where the last option is possible only under the constraint that `F+2K+K\*L[K,F+2K]` is smaller or equal than the total capacity of `K` cars.
 
-This means that the distance reachable with K cars, and leaving excess fuel F, is either: 
+This means that the distance reachable with `K` cars, and leaving excess fuel `F`, is either: 
 
-1. the same reached by K+1 cars with the same excess F, if that excess is not enough to guarantee a step forward
-2. 1 step further than the distance reached by the same number of cars at the previous stop, if K cars can store enough fuel (excess+fuel needed to come back) to take a step forward and reach the current state
+1. the same reached by `K+1` cars with the same excess `F`, if that excess is not enough to guarantee a step forward
+2. 1 step further than the distance reached by the same number of cars at the previous stop, if `K` cars can store enough fuel (excess+fuel needed to come back) to take a step forward and reach the current state
 
-The table is computed starting from the bottom row, with all K\_max cars and all fuel F\_total in excess, and then reducing F. 
+The table is computed starting from the bottom row, with all `K\_max` cars and all fuel `F\_total` in excess, and then reducing `F`. 
 
-It would also be possible to see the problem from the opposite point of view, i.e., considering needed fuel (used or to-be-used) instead of the excess fuel.
+It would also be possible to see the problem from the opposite point of view, i.e., considering needed fuel (used or to-be-used) instead of the excess fuel. It makes no difference.
