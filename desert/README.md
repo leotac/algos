@@ -28,8 +28,9 @@ Then, send back as many jeeps as possible such that, for each of them, either:
 - the (partial) excess fuel that can't be stored is greater than 2.
 
 This is optimal because:
-1. Sending back fewer jeeps than advised implies wasting fuel that could be saved. 
-2. Sending back more cars than needed does not improve the solution.
+
+1. sending back fewer jeeps than advised implies wasting fuel that could be saved. 
+2. sending back more cars than needed does not improve the solution.
 
 Dynamic programming
 -------------------
@@ -40,13 +41,13 @@ With DP, build a table L where `L[K,F]` is the max length that can be reached wi
 The excess fuel, as mentioned above, is defined as the available fuel in the gas tanks or fuel cans reduced by the amount of fuel needed to get back to the base camp. In other words, the remaining fuel after all cars are back.
 
 Since we are not interested in saving fuel, referring to the original problem, `L[1,0]` is going to be the solution we want. 
-Of course, we also get _for free_ the optimal distances reached with at least `K=1..9 cars`.
+Of course, we also get _for free_ the optimal distances reached with at least `K=1..9` cars.
 
 The update is computed according to the equation:
 
     L[K,F] = max {0, L[K+1,F], 1 + L[K,F+2K]}
 
-where the last option is possible only under the constraint that `F+2K+K\L[K,F+2K]` is smaller or equal than the total capacity of `K` cars.
+where the last option is possible only under the constraint that `F+2K+K*L[K,F+2K]` is smaller or equal than the total capacity of `K` cars.
 
 This means that the distance reachable with `K` cars, and leaving excess fuel `F`, is either: 
 
