@@ -4,8 +4,6 @@ Desert crossing - La traversata del deserto
 Puzzle from:
 http://xmau.com/notiziole/arch/201304/008401.html
 
-Nove amici, ciascuno con la sua jeep, sono al margine est di un deserto. Vogliono avventurarsi al suo interno il più possibile: però le loro jeep hanno un'autonomia di soli sessanta chilometri, perché il serbatoio contiene solo dieci litri di benzina. Ogni jeep però ha anche nove taniche da dieci litri piene di benzina; gli unici problemi sono che non si può usare una tanica solo in parte, ma bisogna versarla tutta in un unico serbatoio, e che non è possibile creare dei depositi di benzina all'interno del deserto. Qual è la distanza massima che può essere esplorata almeno da uno degli amici, tenendo conto che tutti vogliono ritornare alla base?
-
 Nine friends, with a jeep each, are at the eastern border of a desert.
 They want to travel in the desert as far as possible.
 Each jeep can go as far as 60 km with a tank of fuel. Gas tanks are full at the start. Only one person is allowed on each jeep.
@@ -13,6 +11,8 @@ Each jeep can hold 9 additional fuel cans.
 A fuel can can be used only to completely refill a tank, provided that the tank is empty.
 What is the farthest distance (at least) one of them can travel?
 All friends obviously need to return safely to the base camp.
+
+Nove amici, ciascuno con la sua jeep, sono al margine est di un deserto. Vogliono avventurarsi al suo interno il più possibile: però le loro jeep hanno un'autonomia di soli sessanta chilometri, perché il serbatoio contiene solo dieci litri di benzina. Ogni jeep però ha anche nove taniche da dieci litri piene di benzina; gli unici problemi sono che non si può usare una tanica solo in parte, ma bisogna versarla tutta in un unico serbatoio, e che non è possibile creare dei depositi di benzina all'interno del deserto. Qual è la distanza massima che può essere esplorata almeno da uno degli amici, tenendo conto che tutti vogliono ritornare alla base?
 
 Solution
 --------
