@@ -11,7 +11,7 @@ They want to travel in the desert as far as possible.
 Each jeep can go as far as 60 km with a tank of fuel. Gas tanks are full at the start. Only one person is allowed on each jeep.
 Each jeep can hold 9 additional fuel cans. 
 A fuel can can be used only to completely refill a tank, provided that the tank is empty.
-What is the maximum distance at least one of them can travel?
+What is the farthest distance (at least) one of them can travel?
 All friends obviously need to return safely to the base camp.
 
 Solution
