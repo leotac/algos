@@ -1,4 +1,4 @@
-
+Submarines and battleships
 ----------
 
 Naval warfare is a complicated undertaking due
@@ -16,6 +16,7 @@ cannot move.
 Use Pythagorean theorem to calculate the distance
 between cells. For example, the distance between
 cells A1 and B3 is 2.236 km.
+
 **QUESTION**: What is the minimum total distance
 the submarines need to travel to destroy all of the
 battleships?
