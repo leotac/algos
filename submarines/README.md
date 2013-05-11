@@ -14,18 +14,17 @@ same cell as a battleship, the battleship is destroyed.
 Each submarine can only destroy one battleship. Battleships
 cannot move.
 
-`
-10 o o o o o s o o o b  
-9  o o o b o o o o o o  
-8  o o o o o b b o o o  
-7  o o o s o o o b s o  
-6  o s o o o o b o o s  
-5  o o o o o b b o s o  
-4  o o b o o o s o o b  
-3  o o o s o b o o o s  
-2  o s o s o b o o o s  
-1  s b o o o b s o s b  
-   A B C D E F G H I J`
+      10 o o o o o s o o o b  
+      9  o o o b o o o o o o  
+      8  o o o o o b b o o o  
+      7  o o o s o o o b s o  
+      6  o s o o o o b o o s  
+      5  o o o o o b b o s o  
+      4  o o b o o o s o o b  
+      3  o o o s o b o o o s  
+      2  o s o s o b o o o s  
+      1  s b o o o b s o s b  
+         A B C D E F G H I J
 
 Use Pythagorean theorem to calculate the distance
 between cells. For example, the distance between
