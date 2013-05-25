@@ -1,0 +1,182 @@
+% notes.tex
+\documentclass[a4paper,11pt,italian]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}         %additional math symbols (see amsguide.tex)
+\usepackage{amsopn}
+\usepackage{theorem}          %additional LaTeX2e package (see pctex\latex2e)
+\usepackage{latexsym}
+\usepackage{graphicx}        %graphic and .eps files
+\usepackage{mathrsfs}           %calligraphic fonts
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{psfrag}
+\usepackage{mathenv}
+\usepackage[italian]{babel}  
+\usepackage{verbatim}
+\usepackage{moreverb}
+\usepackage{a4}  
+\usepackage{enumerate}  
+\usepackage{pstricks, pst-node, pst-tree}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{tikz}
+
+\usepackage{tkz-graph}
+
+
+\usepackage{boxedminipage}
+
+
+
+\setlength{\parindent}{0.5cm}
+\setlength{\parskip}{0.3cm}
+% the following settings leave nearly no margins. For defaults, rem out.
+\setlength{\oddsidemargin}{0.5cm}
+%% rem out following for one-side only
+%\setlength{\evensidemargin}{-0.58cm}
+%%
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\setlength{\footskip}{1cm}
+\setlength{\topmargin}{0cm}
+
+%% ______________________etc_____________________________
+\pagestyle{fancy}
+%\ifthenelse{\boolean{soluzioni}}{\lhead{\small \sc Soluzione}}{\lhead{\small \sc Testo}}
+{\lhead{\sc }}
+{\chead{\sc }}
+\rhead{}
+\renewcommand{\footrulewidth}{0.5pt}
+\lfoot{{\scriptsize }}
+\cfoot{}
+\rfoot{\thepage}
+
+\renewcommand{\baselinestretch}{1}
+% N.B. if paper has sections and subsections add "[section]"
+%      or "[subsection]" at the end of the following 5 lines.
+\newtheorem{result}{\ }[section]
+\theoremstyle{changebreak}                % (see LATEX2E\THEOREM.DTX)
+\newtheorem{thm}[result]{Theorem}
+\newtheorem{defn}[result]{Definition}
+\newtheorem{lem}[result]{Lemma}
+\newtheorem{cor}[result]{Corollary}
+\newtheorem{prop}[result]{Proposition}
+\newtheorem{eg}[result]{Example}
+\newenvironment{proof}
+ {{\sl Dimostrazione.}\hspace*{1 ex}}%
+ {{\nopagebreak\hspace*{\fill}$\Box$\par\vspace{12pt}}}
+%
+\renewcommand{\vec}[1]{\underline{#1}}
+\newcommand{\transpose}[1]{{#1}^{\mbox{\sf \tiny T}}}
+\newcommand{\primed}[1]{{#1}^\prime}
+\newcommand{\norm}[2]{||#1||_{#2}}
+\DeclareMathOperator*{\argmin}{argmin}
+%
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ignore}[1]{}
+\newcommand{\E}{\`E}
+\newcommand{\OM}{\mbox{\sf \tiny OM}}
+
+
+
+
+
+\begin{document}
+\title{Notes on robust energy production planning}
+\maketitle
+\section{Recoverable robust formulation with discrete scenarios}
+\subsection{MILP model}
+
+\begin{eqnarray}[rlr]
+    \min \quad & \multicolumn{2}{l}{\sum_{i \in I, t \in T}c_{i}^{\OM}z_{it}^0 + \max_{s\in\mathcal{S}}\left\{\sum_{i\in I, t\in T}(c_i^ff_{ist} +  c_t^pp_{ist} + c_i^{\OM}y_{ist} + c_i^\Delta\Delta_{ist} + b_iv_{ist} )\right\}   }\label{obj} \\
+\mbox{s.t.} \quad && \nonumber \\
+                  & z_{ist}=z_{it}^0+y_{ist}& i\in I, t\in T, s \in\mathcal{S}\\
+                  & v_{ist}\geq y_{ist},v_{ist}\geq -y_{ist}& i\in I, t\in T, s \in\mathcal{S}\\
+                  & \sum_{i\in I, t\in T} v_{ist}\leq \nu  & s \in\mathcal{S}\\
+                  %& v_{ist}\geq -y_{ist}& i\in I, t\in T, s \in\mathcal{S}&\\
+                  & \sum_{i\in I}q_{ist} + (u_{st}(1-\mu) -u_{st+1}) \geq d_{st}^q & t\in T, s \in\mathcal{S}\\
+                  & \sum_{i\in I}e_{ist} -\sum_{i\in I}p_{ist} \geq d_{st}^e & t\in T, s \in\mathcal{S}\\
+                  & \Delta_{ist}\geq z_{ist}-z_{ist-1}& i\in I, t\in T, s \in\mathcal{S}\\
+                  & \Delta_{ist}\leq z_{ist}& i\in I, t\in T, s \in\mathcal{S}\\
+                  & \Delta_{ist}\leq 1-z_{ist-1}& i\in I, t\in T, s \in\mathcal{S}\\
+                  %& \sum_{t\in T}\Delta_{ist}\leq MAX_i^{\Delta}& i\in I, s \in\mathcal{S}&\mbox{startup}\\
+                  & \sum_{t\in T}\Delta_{ist}\leq \overline{\Delta}_i& i\in I, s \in\mathcal{S}\\
+                  & q_{ist}\leq K'_{it}f_{ist}& i\in I, s \in\mathcal{S}\\
+                  & q_{ist}\leq K''_{it}p_{ist}& i\in I, s \in\mathcal{S}\\
+                  & e_{ist}\leq K'''_{it}f_{ist}& i\in I, s \in\mathcal{S}\\
+                  %& MIN^q_{it}z_{ist}\leq q_{ist} \leq MAX^q_{it}z_{ist} & i\in I, s \in\mathcal{S}&\mbox{q production}\\
+                  & \underline{q}_{it}z_{ist}\leq q_{ist} \leq \overline{q}_{it}z_{ist} - \hat{q}\Delta_{ist} & i\in I,t \in T, s \in\mathcal{S}\\
+                  %& MIN^e_{it}z_{ist}\leq e_{ist} \leq MAX^e_{it}z_{ist} & i\in I, s \in\mathcal{S}&\mbox{q production}\\
+                  & \underline{e}_{it}z_{ist}\leq e_{ist} \leq \overline{e}_{it}z_{ist}  - \hat{e}\Delta_{ist}& i\in I, s \in\mathcal{S}\\
+                  & u_{st}\leq\overline{u}&t\in T,s\in\mathcal{S}\\
+                  %& z_{it}^0\in\{0,1\}& i\in I, t\in T \nonumber \\
+                  & z_{it}^0, z_{ist}\in\{0,1\}& i\in I, t\in T, s \in\mathcal{S}  \\
+                  & y_{ist}\in\{-1,0,1\}& i\in I, t\in T, s \in\mathcal{S} \\
+                  & q_{ist},e_{ist},f_{ist},p_{ist},u_{st},v_{ist}\geq0& i\in I, t\in T, s \in\mathcal{S} 
+\end{eqnarray}
+
+The model can be easily reformulated as a MILP adding an auxiliary variable $\eta$ to model the $\max()$ operator in the objective function. 
+Moreover, it is useful in practice to add an $\epsilon$-penalty term for each discrete scenario, thus ensuring a tight optimal solution for each of them, and not only for the worst scenario (i.e., the scenario with $cost = \eta$).
+\begin{eqnarray}[rlr]
+    \min \quad & \sum_{i \in I, t \in T}c_{i}^{\OM}z_{it}^0 + \eta + \sum_{s \in S}\epsilon\cdot cost_s\\ 
+               & \eta \ge cost_s & s\in S\\
+               & cost_s = \sum_{i\in I, t\in T}(c_i^ff_{ist} +  c_t^pp_{ist} + c_i^{\OM}y_{ist} + c_i^\Delta\Delta_{ist} + b_iv_{ist} ) &  s\in S\\
+\end{eqnarray}
+
+\begin{table}[h]
+    \caption{Sets}
+\begin{tabular}{l l}
+    $I$ & set of generation units\\
+    $T$ & set of time periods\\
+    $\mathcal{S}$ & set of scenarios
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[h]
+    \caption{Variables}
+\begin{tabular}{l l}
+    $z_{ist}$ & on/off status of unit $i$, at time $t$, in scenario $s$\\
+    $z_{it}^0$ & default on/off status of unit $i$, at time $t$\\
+    $y_{ist}$ & recovery action on unit $i$, at time $t$, in scenario $s$\\
+    $v_{ist}$ & 1 if recovery action has been taken on unit $i$ at time $t$, in scenario $s$; 0 otherwise\\
+    $q_{ist}$ & heat generated by unit $i$, at time $t$, in scenario $s$\\
+    $u_{st}$ & heat stored at time $t$, in scenario $s$\\
+    $e_{ist}$ & electricity generated by unit $i$, at time $t$, in scenario $s$\\
+    $f_{ist}$ & fuel consumed by unit $i$, at time $t$, in scenario $s$\\
+    $p_{ist}$ & electricity consumed by unit $i$, at time $t$, in scenario $s$
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+    \caption{Parameters}
+\begin{tabular}{l l}
+    $c_{i}^{\OM}$ & hourly operation cost for unit $i$ \\
+    $c_{i}^{\Delta}$ & startup cost for unit $i$ \\
+    $c_{i}^{f}$ & unit cost of fuel consumed by unit $i$ \\
+    $c_t^{p}$ & unit cost of electricity at time $t$ \\
+    $b_{i}$ & penalty cost of a recovery action for unit $i$\\
+    $\nu$ & maximum number of recovery actions in a scenario\\
+    $\mu$ & constant deterioration rate for heat stock \\
+    $\underline{q}_{it},\overline{q}_{it}$ & min and max $q$ generated by unit $i$, at time $t$\\
+    $\underline{e}_{it},\overline{e}_{it}$ & min and max $e$ generated by unit $i$, at time $t$\\
+    $\hat{q}_{it}$ & penalty of $q$  by unit $i$, at time $t$ in scenario $s$\\
+    $\overline{\Delta}_i$ & max number of startups for unit $i$\\
+    $\overline{u}$ & max storage\\
+    $d^q_{st}$ & demand of $q$ at time $t$ in scenario $s$\\
+    $d^e_{st}$ & demand of $e$ at time $t$ in scenario $s$\\
+    $K'_{it}$ & $q/f$ transformation factor for unit $i$ (at time $t$) - coefficient of performance, c.o.p\\
+    $K''_{it}$ & $q/p$ transformation factor for unit $i$ (at time $t$)\\
+    $K'''_{it}$ & $e/f$ transformation factor for unit $i$ (at time $t$)\\
+\end{tabular}
+\end{table}
+
+\section{Notes on papers}
+\paragraph{Bertsimas, Thiele 2006}
+Bla bla bla
+\end{document}
